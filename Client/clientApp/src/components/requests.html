@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduShare</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+    .navbar-logo::before {
+      content: "🎓";
+      margin-right: 5px;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+    .navbar-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .navbar-actions a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+    .navbar-actions .start-request {
+      background-color: #007BFF;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+    }
+    .filters input, .filters select {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .filters input {
+      width: 300px;
+    }
+    .requests-container {
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    .request-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .request-details {
+      flex: 1;
+    }
+    .priority {
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .priority.high {
+      background-color: #FFE6E6;
+      color: #FF3333;
+    }
+    .priority.medium {
+      background-color: #FFF3E0;
+      color: #FF9800;
+    }
+    .priority.low {
+      background-color: #E6FFE6;
+      color: #4CAF50;
+    }
+    .request-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .request-location {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .request-description {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .request-quote {
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .request-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .request-time {
+      font-size: 12px;
+      color: #666;
+    }
+    .donate-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .pagination button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .pagination button.active {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-logo">EduShare</div>
+    <div class="navbar-links">
+      <a href="#">Home</a>
+      <a href="#">Browse</a>
+      <a href="#">About</a>
+      <a href="#">How It Works</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="#">Login</a>
+    
+    </div>
+  </div>
+
+  <div class="filters">
+    <input type="text" placeholder="Search for requests">
+    
+    <select>
+      <option>Resource Type</option>
+    </select>
+    <select>
+      <option>Urgency Level</option>
+    </select>
+  </div>
+
+  <div class="requests-container">
+    <div class="request-card">
+      <div class="request-details">
+        <div class="priority high">High Priority</div>
+        <div class="request-title">Laptops for Rural School</div>
+        <div class="request-location">Green Valley School, Kenya</div>
+        <div class="request-description">10 laptops needed</div>
+        <div class="request-quote">"These laptops will help 50 students learn coding skills"</div>
+      </div>
+      <div class="request-meta">
+        <div class="request-time">2 days ago</div>
+        <button class="donate-button">Donate Now</button>
+      </div>
+    </div>
+
+    <div class="request-card">
+      <div class="request-details">
+        <div class="priority medium">Medium Priority</div>
+        <div class="request-title">Science Lab Equipment</div>
+        <div class="request-location">Sunshine Academy, Uganda</div>
+        <div class="request-description">Basic lab setup for 100 students</div>
+        <div class="request-quote">"Will enable practical science education for entire middle school"</div>
+      </div>
+      <div class="request-meta">
+        <div class="request-time">5 days ago</div>
+        <button class="donate-button">Donate Now</button>
+      </div>
+    </div>
+
+    <div class="request-card">
+      <div class="request-details">
+        <div class="priority low">Low Priority</div>
+        <div class="request-title">Library Books Collection</div>
+        <div class="request-location">Hope Elementary, Tanzania</div>
+        <div class="request-description">200 educational books</div>
+        <div class="request-quote">"Creating a reading culture among 300 primary students"</div>
+      </div>
+      <div class="request-meta">
+        <div class="request-time">1 week ago</div>
+        <button class="donate-button">Donate Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button class="active">1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+  </div>
+</body>
+</html>

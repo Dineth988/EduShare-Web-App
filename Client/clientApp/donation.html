@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduShare - Donation Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation Bar */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2462eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2462eb;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background-color: #f0f4f8;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #111826;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #4b5462;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 3rem 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e6f0ff;
+            border-radius: 50%;
+        }
+        
+        .category-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #111826;
+        }
+        
+        /* Donation Form */
+        .donation-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        
+        .form-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #111826;
+            border-bottom: 2px solid #f0f4f8;
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4b5462;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .image-upload:hover {
+            border-color: #2462eb;
+        }
+        
+        /* Delivery Options */
+        .delivery-options {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .delivery-option {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .delivery-option:hover {
+            border-color: #2462eb;
+        }
+        
+        .delivery-option.selected {
+            border-color: #2462eb;
+            background-color: #f0f7ff;
+        }
+        
+        .radio-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .radio-container input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .option-description {
+            color: #4b5462;
+            font-size: 0.9rem;
+        }
+        
+        /* Additional Options */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-right: 1rem;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #2462eb;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Form Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: #2462eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1a4fc8;
+        }
+        
+        .btn-secondary {
+            background-color: #f0f4f8;
+            color: #4b5462;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e6ed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="img/logo.svg" alt="EduShare Logo">
+                <span class="logo-text">EduShare</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Donate</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Make a Difference Today</h1>
+            <p>Your donations can change lives</p>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="categories-grid">
+                <!-- Category Card 1 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/book-icon.svg" alt="Printed Materials">
+                    </div>
+                    <h3 class="category-name">Printed Materials</h3>
+                </div>
+                
+                <!-- Category Card 2 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/tech-icon.svg" alt="Technology">
+                    </div>
+                    <h3 class="category-name">Technology</h3>
+                </div>
+                
+                <!-- Category Card 3 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/math-icon.svg" alt="Math Tools">
+                    </div>
+                    <h3 class="category-name">Math Tools</h3>
+                </div>
+                
+                <!-- Category Card 4 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/science-icon.svg" alt="Science Equipment">
+                    </div>
+                    <h3 class="category-name">Science Equipment</h3>
+                </div>
+                
+                <!-- Category Card 5 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/digital-icon.svg" alt="Digital Media">
+                    </div>
+                    <h3 class="category-name">Digital Media</h3>
+                </div>
+                
+                <!-- Category Card 6 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/writing-icon.svg" alt="Writing Supplies">
+                    </div>
+                    <h3 class="category-name">Writing & Stationary Supplies</h3>
+                </div>
+                
+                <!-- Category Card 7 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/money-icon.svg" alt="Monetary Donations">
+                    </div>
+                    <h3 class="category-name">Monetary Donations</h3>
+                </div>
+                
+                <!-- Category Card 8 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/service-icon.svg" alt="Services">
+                    </div>
+                    <h3 class="category-name">Services</h3>
+                </div>
+                
+                <!-- Category Card 9 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <img src="img/other-icon.svg" alt="Others">
+                    </div>
+                    <h3 class="category-name">Others</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Donation Form -->
+    <div class="container">
+        <form class="donation-form">
+            <!-- Item Details Section -->
+            <div class="form-section">
+                <h2>Item Details</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-name">Item Name</label>
+                        <input type="text" id="item-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" min="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="condition">Condition</label>
+                        <select id="condition" required>
+                            <option value="">Select condition</option>
+                            <option value="new">New</option>
+                            <option value="like-new">Like New</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    <div class="image-upload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #2462eb; margin-bottom: 0.5rem;"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <p style="font-size: 0.8rem; color: #999;">PNG, JPG, GIF up to 5MB</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Delivery Method Section -->
+            <div class="form-section">
+                <h2>Delivery Method</h2>
+                <div class="delivery-options">
+                    <div class="delivery-option">
+                        <div class="radio-container">
+                            <input type="radio" id="self-ship" name="delivery-method" value="self-ship">
+                            <label for="self-ship">Self Ship</label>
+                        </div>
+                        <p class="option-description">I will arrange shipping myself</p>
+                    </div>
+                    <div class="delivery-option">
+                        <div class="radio-container">
+                            <input type="radio" id="partner-pickup" name="delivery-method" value="partner-pickup">
+                            <label for="partner-pickup">Partner Pickup</label>
+                        </div>
+                        <p class="option-description">Our partners will pick up the items</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Options Section -->
+            <div class="form-section">
+                <h2>Additional Options</h2>
+                <div class="toggle-group">
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Make this recurring</span>
+                </div>
+                <div class="form-group">
+                    <label for="special-instructions">Special Instructions</label>
+                    <textarea id="special-instructions"></textarea>
+                </div>
+            </div>
+            
+            <!-- Form Buttons -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Complete Donation</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Add interaction for delivery options
+        document.querySelectorAll('.delivery-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.delivery-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                // Check the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+    </script>
+</body>
+</html>
